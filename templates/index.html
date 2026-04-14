@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phishing URL Detector</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Phishing <span class="highlight">Detector</span></h1>
+            <p class="subtitle">Real-time AI-powered URL Analysis with Explainability</p>
+        </header>
+
+        <main>
+            <div class="input-section glass-card">
+                <form id="check-form">
+                    <input type="text" id="url-input" name="url" placeholder="Enter URL to analyze (e.g., http://example.com)" required autocomplete="off">
+                    <button type="submit" id="check-btn">
+                        <span class="btn-text">Check URL</span>
+                        <div class="loader" id="loader"></div>
+                    </button>
+                </form>
+            </div>
+
+            <div id="results-section" class="hidden">
+                <div class="results-grid">
+                    <!-- Prediction Card -->
+                    <div class="card glass-card prediction-card" id="pred-card">
+                        <h2>Prediction</h2>
+                        <div class="status-badge" id="prediction-badge">Unknown</div>
+                        <p class="desc" id="prediction-desc">Based on 112 extracted features</p>
+                    </div>
+
+                    <!-- Risk Score Card -->
+                    <div class="card glass-card score-card">
+                        <h2>Risk Score</h2>
+                        <div class="score-circle">
+                            <svg viewBox="0 0 36 36" class="circular-chart">
+                                <path class="circle-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                                <path class="circle" id="score-circle-path" stroke-dasharray="0, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                            </svg>
+                            <div class="percentage" id="score-text">0%</div>
+                        </div>
+                        <p class="desc">Probability of being phishing</p>
+                    </div>
+                </div>
+
+                <!-- Explanation Section -->
+                <div class="card glass-card explanation-card">
+                    <h2>AI Explanation (SHAP)</h2>
+                    <p class="desc">Why did the model make this decision?</p>
+                    <div class="shap-container">
+                        <img id="shap-plot" src="" alt="SHAP Plot will appear here" class="shap-image">
+                    </div>
+                    <p class="optimization-note">Optimized for real-time detection using reduced feature set.</p>
+                </div>
+            </div>
+            
+            <div id="error-message" class="hidden glass-card error"></div>
+        </main>
+        
+        <footer>
+            <p>Powered by XGBoost & SHAP • <a href="#">Learn more</a></p>
+        </footer>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,13 @@
+flask
+xgboost
+scikit-learn
+shap
+tldextract
+python-whois
+dnspython
+requests
+joblib
+numpy
+pandas
+beautifulsoup4
+googlesearch-python
